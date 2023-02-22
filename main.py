@@ -6,6 +6,8 @@ from snake import Snake
 
 FPS = 15
 
+SCREEN_SIZE = (640, 640)
+SCORE_BOARD_POS = (320, 20)
 ## 컬러 세팅 ##
 BLUE = (0,0,255)
 RED = (255,0,0)
@@ -15,12 +17,15 @@ WHITE = (255,255,255)
 
 pygame.init()
 pygame.display.set_caption("Snake Game")
-screen = pygame.display.set_mode(size=(640, 640))
+screen = pygame.display.set_mode(size=SCREEN_SIZE)
 
 clock = pygame.time.Clock()
 
+# 화면이 640x640 고정이라 그 안에서 한 좌표가 나오게 해주는 람다식
+random_cor = lambda : (rd.randint(10, 620), rd.randint(10, 620))
+
 snake = Snake(WHITE)
-food = Food(rd.randint(10, 600), rd.randint(10, 600), 5, 5)
+food = Food(random_cor(), 5, 5)
 
 game_on = True
 
@@ -61,7 +66,7 @@ while game_on:
   
   # 음식 충돌 체크
   if snake.head.colliderect(food):
-    food.respawn()
+    food.respawn(random_cor())
     snake.extend()
   
   # 점수 처리

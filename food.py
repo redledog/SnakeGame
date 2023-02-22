@@ -4,10 +4,11 @@ import random as rd
 # 먹으면 다시 랜덤으로 재배치
 
 class Food(pygame.Rect):
-  def __init__(self, x, y, w, h, color = (0,255,255)):
-    super().__init__(x,y,w,h)
+  def __init__(self, pos, w, h, color = (0,255,255)):
+    super().__init__(pos[0], pos[1], w, h)
     self.color = color
     
   # 재배치
-  def respawn(self):
-    self.update(rd.randint(10, 600), rd.randint(10, 600), self.w, self.h)
+  # 좌표를 받아오도록
+  def respawn(self, pos):
+    self.update(pos[0], pos[1], self.w, self.h)
