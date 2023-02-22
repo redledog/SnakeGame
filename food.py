@@ -10,4 +10,4 @@ class Food(pygame.Rect):
     
   # 재배치
   def respawn(self):
-    self.update(self.w, self.h, rd.randint(10, 600), rd.randint(10, 600))
+    self.update(rd.randint(10, 600), rd.randint(10, 600), self.w, self.h)

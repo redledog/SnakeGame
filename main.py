@@ -61,7 +61,8 @@ while game_on:
   
   # 음식 충돌 체크
   if snake.head.colliderect(food):
-    print("Nyom!")
+    food.respawn()
+    snake.extend()
   
   # 점수 처리
   
