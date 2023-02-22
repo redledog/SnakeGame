@@ -2,12 +2,13 @@ import pygame
 import sys
 import random as rd
 from food import Food
+from scoreboard import ScoreBoard
 from snake import Snake
 
 FPS = 15
 
 SCREEN_SIZE = (640, 640)
-SCORE_BOARD_POS = (320, 20)
+SCORE_BOARD_POS = (300, 20)
 ## 컬러 세팅 ##
 BLUE = (0,0,255)
 RED = (255,0,0)
@@ -26,6 +27,7 @@ random_cor = lambda : (rd.randint(10, 620), rd.randint(10, 620))
 
 snake = Snake(WHITE)
 food = Food(random_cor(), 5, 5)
+scoreboard = ScoreBoard()
 
 game_on = True
 
@@ -56,7 +58,6 @@ while game_on:
   # 먹을거 렌더링
   pygame.draw.rect(screen, food.color, food)
   
-  # TODO
   # 뱀이 벽에 닿으면 게임오버 처리, 판정이 좀 더 여유롭게 적용
   # 자기 자신을 물었는지도 체크해야함
   if (snake.head.x < 0 or snake.head.x > 640) or (snake.head.y < 0 or snake.head.y > 640) or snake.bite_is_self():
@@ -68,8 +69,10 @@ while game_on:
   if snake.head.colliderect(food):
     food.respawn(random_cor())
     snake.extend()
+    scoreboard.score += 1
   
   # 점수 처리
+  screen.blit(scoreboard.score_render_text(WHITE), SCORE_BOARD_POS)
   
   pygame.display.update()
   clock.tick(FPS)
@@ -82,3 +85,7 @@ while True:
       if pygame.mouse.get_pressed()[0]:
         pygame.quit()
         sys.exit()
+  # TODO
+  # GameOver 텍스트 출력
+  pygame.display.update()
+  clock.tick(FPS)

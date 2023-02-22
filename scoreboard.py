@@ -7,8 +7,8 @@ class ScoreBoard:
     self.scoreText = lambda : f"Score : {self.score}"
     self.gameOverText = "GameOver"
     
-  def score_render(self, color):
-    self.font.render(text= self.scoreText(), antialias=False, color=color)
+  def score_render_text(self, color):
+    return self.font.render(self.scoreText(), False, color)
   
-  def gameover_render(self, color):
-    self.font.render(text= self.gameOverText, antialias=False, color=color)
+  def gameover_render_text(self, color):
+    return self.font.render(self.gameOverText, False, color)
