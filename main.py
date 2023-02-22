@@ -8,7 +8,9 @@ from snake import Snake
 FPS = 15
 
 SCREEN_SIZE = (640, 640)
-SCORE_BOARD_POS = (300, 20)
+SCORE_BOARD_POS = (260, 20)
+GAMEOVER_POS = (260, 320)
+
 ## 컬러 세팅 ##
 BLUE = (0,0,255)
 RED = (255,0,0)
@@ -87,5 +89,6 @@ while True:
         sys.exit()
   # TODO
   # GameOver 텍스트 출력
+  screen.blit(scoreboard.gameover_render_text(RED), GAMEOVER_POS)
   pygame.display.update()
   clock.tick(FPS)
