@@ -55,6 +55,10 @@ class Snake:
   def turn_right(self):
     if self.now_dir != (-1,0):
       self.next_dir = (1,0)
-  
+
   # TODO
   # 몸이랑 머리랑 부딪히면 게임오버 처리
+  # True 면 게임오버
+  def bite_is_self(self):
+    return self.head.collidelist(self.snake[1:]) != -1
+      
